@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --app-padding-x: 60px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-brand: #38D6C4;
+  --radius-button: 10px;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #38D6C4, #22c55e);
+  border-radius: 99px;
+  box-shadow: 0 0 6px rgba(56, 214, 196, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2fffd8, #16a34a);
+  box-shadow: 0 0 10px rgba(56, 214, 196, 0.8);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #38D6C4 transparent;
+}
+
+body {
+  background: #ffffff;
+  color: #171717;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: clip;
+  max-width: 100vw;
+}
+
+/* Single source of truth for app horizontal padding */
+:root {
+  --app-padding-x: 16px;
+}
+@media (min-width: 768px) {
+  :root {
+    --app-padding-x: 60px;
+  }
+}
+.app-px {
+  padding-inline: var(--app-padding-x);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 0.3s ease forwards;
+}
+
+/* Scroll reveal */
+.sr-hidden {
+  opacity: 0;
+  filter: blur(10px);
+  transition:
+    opacity    0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform  0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    filter     0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sr-hidden[data-dir="up"]    { transform: scale(0.96) translateY(44px); }
+.sr-hidden[data-dir="left"]  { transform: scale(0.97) translateX(-64px); }
+.sr-hidden[data-dir="right"] { transform: scale(0.97) translateX(64px); }
+
+.sr-visible {
+  opacity: 1 !important;
+  filter: blur(0px) !important;
+  transform: scale(1) translate(0, 0) !important;
+}
+
+/* Cursor bubbles */
+.cursor-bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(56, 214, 196, 0.45), rgba(56, 214, 196, 0.05));
+  border: 1px solid rgba(56, 214, 196, 0.5);
+  animation: bubble-rise 0.7s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes bubble-rise {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  40% {
+    transform: translate(-50%, calc(-50% - 16px)) scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, calc(-50% - 55px)) scale(0.6);
+    opacity: 0;
+  }
+}
