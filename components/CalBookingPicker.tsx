@@ -51,6 +51,14 @@ export default function CalBookingPicker({
     return () => document.removeEventListener('mousedown', handler)
   }, [])
 
+  // Close on scroll
+  useEffect(() => {
+    if (!open) return
+    const handler = () => setOpen(false)
+    window.addEventListener('scroll', handler, { passive: true })
+    return () => window.removeEventListener('scroll', handler)
+  }, [open])
+
   const handleOpen = () => {
     if (!open && buttonRef.current) {
       const rect = buttonRef.current.getBoundingClientRect()
