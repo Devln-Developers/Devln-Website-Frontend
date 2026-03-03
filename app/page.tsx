@@ -15,9 +15,7 @@ export default function Home() {
     <>
       <Navbar />
       <main className="pt-16 flex flex-col gap-[60px] mb-[60px] overflow-x-hidden">
-        <ScrollReveal direction="up">
-          <HeroSection />
-        </ScrollReveal>
+        <HeroSection />
         <ScrollReveal direction="up" delay={80}>
           <div id="products" className="scroll-mt-20"><ProductsSection /></div>
         </ScrollReveal>
